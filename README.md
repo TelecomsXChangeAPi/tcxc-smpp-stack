@@ -80,9 +80,9 @@ Our SMPP implementation supports three encodings: ASCII (GSM 03.38), LATIN1, and
 Key routing features include:
 
 - Prefix length routing (MCC+MNC)
-- Least cost routing
-- Buyer tech prefix support
-- Route ordering
+- Least Cost
+- Tech prefix
+- Route Order (Priority)
 - Load balancing/weight
 
 # Billing
