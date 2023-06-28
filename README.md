@@ -30,6 +30,13 @@ The SMPP Proxy Async Upstream Proxies, written in NodeJs is an important compone
 
 Written in Go Lang, the SMPP Bind Balancer is a powerful component in the architicture that ensures optimal load balancing across multiple SMPP binds or connections. It can intelligently route incoming DLRs to the approperiate upstream async proxy, distribute the messaging load based on various factors such as capacity, connection state, or system resources, thereby improving system efficiency, enhancing message throughput, and reducing the risk of bottlenecks.
 
+- **HTTP-SMPP Convertor**
+
+The HTTP-SMPP Convertor, is designed to facilitate seamless communication across different interfaces. Its key function is to convert REST API SMS submissions into the SMPP protocol. This is particularly useful for clients interfacing with our platform over REST API, rather than a direct SMPP connection. 
+
+The HTTP-SMPP Convertor works with AWS API Gateway and Lambda functions, It's also tighthly integrated  with TCXC HTTP Account types, ensuring a broad range of applicability.
+
+
 # Key Features
 
 Our solution provides a suite of features designed to ensure robust, efficient, and versatile SMS management. These include:
