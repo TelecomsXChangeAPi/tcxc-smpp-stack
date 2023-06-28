@@ -9,6 +9,8 @@ For further information or assistance, reach out to our team at support@telecoms
 
 # TCXC SMPP Stack
 
+<img src="https://www.telecomsxchange.com/static/media/overview-4.3b256d14ec1b984ac7a0.png" width="500" height="300">
+
 **SMPP Proxy Async**
 
 Crafted in Node.js, the SMPP Proxy Async Server is an all-in-one solution proficient in handling SMS routing, billing, and AAA. This component has been battle-tested under real-world conditions, demonstrating its capability by effectively routing and billing millions of SMS messages. Its design is particularly tailored for low TPS setups due to single threading limitation by nodejs, making it an ideal and simple choice for environments where lower throughput is the norm.
