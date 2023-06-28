@@ -90,3 +90,10 @@ Our SMPP Proxy has been successfully tested with:
 
 # Language Tests
 We've successfully tested English, Arabic,Turkish, Japanese and Chinese languages.
+
+# Code Access and Usage 
+
+While our README repository is hosted on GitHub, it's important to understand that this does not imply open source availability. Instead, we operate on a royalty-based system where clients who have made the necessary payments are granted non-binary access to all components under a private github repository.
+
+This model allows us to provide our clients with the ability to customize and adapt our solutions to their unique needs, all while maintaining a level of quality and support that we pride ourselves on. We are dedicated to providing you with the tools necessary to fully leverage our solutions within your own operational context.
+
