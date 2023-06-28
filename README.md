@@ -1,80 +1,92 @@
-![](https://user-images.githubusercontent.com/26701933/54167718-c5161f80-4473-11e9-82cc-f6ff64227d8e.png)
+<img src="https://user-images.githubusercontent.com/26701933/54167718-c5161f80-4473-11e9-82cc-f6ff64227d8e.png" width="40%" height="40%">
 
-# Demo
+# Introduction
 
-Contact support@telecomsxchange.com or visit www.telecomsxchange.com/contact
+After years of dedication to development and continuous improvement, our team has crafted and refined these robust solutions. Tested under real-world traffic conditions in Tier 1 networks, they have proven their exceptional performance and resilience. Our SMPP stack, which can function either in conjunction with the TCXC Wholesale Digital Transformation Platform or as a standalone component (excluding Voice, Numbers functions), stands as a testament to our commitment to innovation and quality in communications technology.
 
-# smpp-proxy
-SMPP Proxy / B2BUA
+# See It in action (Schedule a demo)
+For further information or assistance, reach out to our team at support@telecomsxchange.com or visit [our contact page](www.telecomsxchange.com/contact).
 
-TelecomsXChange SMPP proxy is the core component for the SMS exchange functionality on telecomsxchange platform, it handles sms Routing,Billing and security using AAA, this stack has already successfully handled (routed and billed) millions of SMS messages.
+# TCXC SMPP Stack
 
-- HIGH TPS SUPPORT up to 3000/sec per node (P.S with no billing)
-- SMS ROUTING/LCR
-- Throttling Control per buyer/IP-account/Route
-- PREPAID/POST BILLING/charging
-- Concatenated Message Billing / Support
-- DLRs - Delivery Report Relay
-- Realtime SMS control and call data records (CDRs) generation using RADIUS
-- Seamless compatibility with majority of popular SMPP software and hardware on the market today
-- Robustness and Resilence
-- Supports SMPP V 5.x and backward compatiable with V3.x
-- SUPPORT RTL such as arabic and chinese letters
-- Accurate SMPP Rate limiting per account/route
+**SMPP Proxy Async**
 
-# Encodings 
+Crafted in Node.js, the SMPP Proxy Async Server is an all-in-one solution proficient in handling SMS routing, billing, and AAA. This component has been battle-tested under real-world conditions, demonstrating its capability by effectively routing and billing millions of SMS messages. Its design is particularly tailored for low TPS setups due to single threading limitation by nodejs, making it an ideal and simple choice for environments where lower throughput is the norm.
 
-This SMPP implementation supports 3 encodings: ASCII (GSM 03.38), LATIN1, and UCS2. Respective data_coding for these encodings are 0x01, 0x03, and 0x08.
+**SMPP Go Archictiture (Recommended for high TPS environments and large scale)**
+ 
+- **SMPP Load Balancer (Go Lang)**
 
-Default encoding for data_coding:0 is ASCII. 
+The SMPP Load Balancer, written in Go Lang, is an efficient tool designed to manage and evenly distribute SMS traffic across multiple SMPP upstream proxy servers. It uses Go's inherent concurrency and simplicity to deliver robust performance, ensuring the highest levels of throughput and availability. Its features include dynamic load distribution, automated failover, and in-depth traffic analytics.
+
+- **SMPP Proxy Async Upstream Proxies**
+
+The SMPP Proxy Async Upstream Proxies, written in NodeJs is an important component within the SMPP Stack that provides asynchronous communication with upstream **Bind Balancer, Redis, AAA and Load balancer servers**. This allows for non-blocking, high-speed transmission and receiving of SMS messages, even when dealing with multiple upstream servers. This results in improved performance, minimized latency, and maximized message throughput.
 
 
+- **SMPP Bind Balancer (Go Lang)**
 
+Written in Go Lang, the SMPP Bind Balancer is a powerful component in the architicture that ensures optimal load balancing across multiple SMPP binds or connections. It can intelligently route incoming DLRs to the approperiate upstream async proxy, distribute the messaging load based on various factors such as capacity, connection state, or system resources, thereby improving system efficiency, enhancing message throughput, and reducing the risk of bottlenecks.
 
+Key Features:
 
+- Supports high TPS up to 7000/sec per node (with AAA)
+- SMS routing/LCR
+- Throttling control per buyer/IP-account/Route
+- Prepaid and postpaid billing/charging
+- Concatenated message billing / support (UDH/Message Payload)
+- DLRs - Delivery report relay
+- Realtime SMS control and call data records (SDRs) generation with TCXC AAA
+- Send SDRs to mediation server via SFTP 
+- Compatible with SMPP v3.4 and 5.0.
+- Robust and resilient
+- Supports RTL languages like Arabic and Chinese
+- Accurate SMPP rate limiting per buyer account/ seller route
+- Emojis Support
+- Grafana Integration (DLR Speed, Avg Selling Price, Message Per Second, Traffic by Sender ID, Binding State Monitoring).
 
-# ROUTING
+**Encodings**
+Our SMPP implementation supports three encodings: ASCII (GSM 03.38), LATIN1, and UCS2. The data_coding for these encodings are 0x01, 0x03, and 0x08 respectively. The default encoding for data_coding:0 is ASCII.
 
-The routing capabilities are: 
+**Routing Groups Support**
 
-- [x] PREFIX LENGTH (MCC+MNC) 
-- [x] Least Cost Routing :routes according to least cost route price for the longest prefix length. 
-- [x] Buyer Tech Prefix: The ability to change routes from carrier to carrier by simply pointing to a different tech prefix
-- [x] ORDER: The ability to set order value for vendors 1,2,3 where 1 is first in route, 2 is second priority, 3 if 1&2 failed to connect. 
-- [x] Load Balancing / Weight 
+Key routing features include:
+
+- Prefix length routing (MCC+MNC)
+- Least cost routing
+- Buyer tech prefix support
+- Route ordering
+- Load balancing/weight
 
 # Billing
+The SMPP Stack is seamlessly integrated with the TCXC AAA (billing system), providing functionalities like:
 
-The SMPP B2BUA is seamlessly integrated with TelecomsXChange Billing engine with the help of Radius (AAA), Authentication, Authorization, Accouting. some of the capabilities are:
+- Prepaid and postpaid modes
+- Rating according to longest prefix "MCC+MNC"
+- Least cost
 
-- Prepaid (Authorized to only use the available prepaid amount in account)
-- Post-Paid (Credit Limit)
-- Rating (According to the longest prefix "MCC+MNC")
+# Hardware Tests
+Our solution has been tested for performance, supporting up to 450,000,000 SMS per month. Find the detailed report below:
 
-# Hardware tests with billing
+- On Dual Xeon E5-2690 v3 2.60 GHz, 30M Cache Processors (24 Cores / 48 Threads), the SMPP proxy can run 180+ messages per second with AAA (Authorization, Authentication, Accounting). To scale, you can run two SMPP proxies on the same hardware to double the capacity.
 
-### 450,000,000 SMS per month.
+Remarkably, this solution is highly adaptable, able to run on any hardware that supports Ubuntu Pro OS, from Bare metal to AWS EC2, Azure, or OpenStack.
 
-- [x] On Dual Xeon E5-2690 v3 2.60 GHz, 30M Cache Processors (24 Cores / 48 Threads) the SMPP proxy can run 180+ messages per second with AAA (Authorization, Authentication, Accounting).
+# Compatibility Tests
+Our SMPP Proxy has been successfully tested with:
 
-NodeJS is single threaded so to scale, you'll have to be running two SMPP proxies on same hardware will double the capacity.
-
-# TESTING CHECK LIST
-
-- InfoBIP. ----> Testing Completed successfully
-- RestcommSMC ---> Testing completed successfully.
-- MontyMobile ---> Testing completed successfully.
-- AirTel  ----> Test completed successfully
-- X2One ---> Test completed successfully
-- Mitto.ch ---> Test completed successfully
-- TATA  
-- PlaySMS ----> Test completed Successfully 
+- InfoBIP
+- Restcomm SMC
+- MontyMobile
+- AirTel
+- X2One
+- Mitto.ch
+- TATA
+- PlaySMS
 - SQUIRETECH
-- JASMIN ---> Test completed successfully
+- JASMIN
+- Telin
+- Haud SMSC
 
-# Languages Tested
-
-- English ----> Test completed successfully  
-- Arabic -----> Test completed successfully 
-- Chinese ----> Test completed successfully.
-
+# Language Tests
+We've successfully tested English, Arabic,Turkish, Japanese and Chinese languages.
