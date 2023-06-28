@@ -45,6 +45,7 @@ Key Features:
 - Supports RTL languages like Arabic and Chinese
 - Accurate SMPP rate limiting per buyer account/ seller route
 - Emojis Support
+- Fully integrated mapping system that seamlessly converts E.212 codes to E.164 format, and vice versa.
 - Grafana Integration (DLR Speed, Avg Selling Price, Message Per Second, Traffic by Sender ID, Binding State Monitoring).
 
 **Encodings**
